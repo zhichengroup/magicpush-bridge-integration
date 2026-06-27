@@ -1,6 +1,6 @@
 # MagicPush Bridge Integration
 
-将 [MagicPush](https://github.com/sss/magicpush)（自托管多通道消息推送网关）的接口管理中的推送接口映射为 Home Assistant 的服务动作，让 HA 自动化可以直接调用 MagicPush 的消息推送能力。
+将 [MagicPush](https://github.com/magiccode1412/magicpush)（自托管多通道消息推送网关）的接口管理中的推送接口映射为 Home Assistant 的服务动作，让 HA 自动化可以直接调用 MagicPush 的消息推送能力。
 
 ## 功能描述
 
@@ -27,7 +27,7 @@ HA 通过服务调用将消息发送到 MagicPush，MagicPush 根据端点绑定
 
 1. 确保已安装 [HACS](https://hacs.xyz/)
 2. 在 HACS 中添加自定义仓库：
-   - URL: `https://github.com/sss/magicpush-bridge-integration`
+   - URL: `https://github.com/zhichengroup/magicpush-bridge-integration`
    - Category: `Integration`
 3. 搜索并安装 `MagicPush Bridge`
 4. 重启 Home Assistant
