@@ -97,10 +97,24 @@ class MagicPushHub:
             return False
 
     async def fetch_endpoints(self) -> dict[str, dict]:
-        body = await self._request_json("GET", "/api/endpoints?pageSize=1000")
-        data = _unwrap(body)
+        all_endpoints: list[dict] = []
+        page = 1
+        page_size = 100
+
+        while True:
+            body = await self._request_json(
+                "GET", f"/api/endpoints?page={page}&pageSize={page_size}"
+            )
+            data = _unwrap(body)
+            all_endpoints.extend(data.get("list", []))
+
+            total_pages = data.get("pagination", {}).get("totalPages", 1)
+            if page >= total_pages:
+                break
+            page += 1
+
         self._endpoints = {}
-        for ep in data.get("list", []):
+        for ep in all_endpoints:
             name = ep.get("name", f"endpoint_{ep['id']}")
             self._endpoints[name] = ep
         _LOGGER.debug("Fetched %d endpoints from %s", len(self._endpoints), self._url)

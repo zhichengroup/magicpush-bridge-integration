@@ -44,14 +44,20 @@ UPDATE_ENDPOINTS_SCHEMA = vol.Schema({})
 
 
 def _find_endpoint(
-    hass: HomeAssistant, endpoint_name: str
+    hass: HomeAssistant, endpoint_key: str
 ) -> tuple[MagicPushHub, dict[str, Any]] | None:
     for entry in hass.config_entries.async_entries(DOMAIN):
         hub: MagicPushHub | None = entry.runtime_data
         if hub is None:
             continue
-        if endpoint_name in hub.endpoints:
-            return hub, hub.endpoints[endpoint_name]
+
+        if endpoint_key in hub.endpoints:
+            return hub, hub.endpoints[endpoint_key]
+
+        for ep in hub.endpoints.values():
+            if str(ep.get("id")) == endpoint_key or ep.get("token") == endpoint_key:
+                return hub, ep
+
     return None
 
 
