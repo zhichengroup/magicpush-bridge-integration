@@ -31,11 +31,8 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
         raise InvalidAuth(str(e)) from e
     except CannotConnectError as e:
         raise CannotConnect(str(e)) from e
-
-    try:
-        await hub.fetch_endpoints()
-    except Exception:
-        pass
+    finally:
+        await hub.cleanup()
 
     return {"title": f"MagicPush ({data[CONF_URL]})"}
 
