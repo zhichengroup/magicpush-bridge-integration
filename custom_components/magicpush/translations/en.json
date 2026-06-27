@@ -1,0 +1,23 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to MagicPush",
+        "description": "Enter your MagicPush server URL and admin credentials",
+        "data": {
+          "url": "Server URL",
+          "username": "Username / Email",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to MagicPush server. Check the URL and ensure the server is running.",
+      "invalid_auth": "Invalid username or password. Please check your credentials.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This MagicPush server is already configured."
+    }
+  }
+}

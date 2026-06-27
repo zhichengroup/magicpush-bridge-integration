@@ -1,0 +1,45 @@
+send_message:
+  name: Send message
+  description: Send a push notification via a MagicPush endpoint
+  fields:
+    endpoint:
+      name: Endpoint
+      description: The name of the MagicPush endpoint to use
+      required: true
+      example: "My Endpoint"
+      selector:
+        text:
+    title:
+      name: Title
+      description: Message title
+      example: "Home Alert"
+      selector:
+        text:
+    content:
+      name: Content
+      description: Message body content
+      required: true
+      example: "Motion detected at front door"
+      selector:
+        text:
+          multiline: true
+    type:
+      name: Type
+      description: Message format type (text, markdown, or html)
+      default: "text"
+      selector:
+        select:
+          options:
+            - "text"
+            - "markdown"
+            - "html"
+    url:
+      name: URL
+      description: Optional click-through URL
+      selector:
+        text:
+
+update_endpoints:
+  name: Update endpoints
+  description: Refresh the list of endpoints from the MagicPush server
+  fields: {}
