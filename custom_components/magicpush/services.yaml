@@ -4,11 +4,12 @@ send_message:
   fields:
     endpoint:
       name: Endpoint
-      description: The name of the MagicPush endpoint to use
+      description: The MagicPush endpoint to send to
       required: true
-      example: "My Endpoint"
       selector:
-        text:
+        select:
+          options: []
+          mode: dropdown
     title:
       name: Title
       description: Message title

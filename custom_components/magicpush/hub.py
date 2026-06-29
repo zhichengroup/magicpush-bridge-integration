@@ -115,8 +115,7 @@ class MagicPushHub:
 
         self._endpoints = {}
         for ep in all_endpoints:
-            name = ep.get("name", f"endpoint_{ep['id']}")
-            self._endpoints[name] = ep
+            self._endpoints[str(ep["id"])] = ep
         _LOGGER.debug("Fetched %d endpoints from %s", len(self._endpoints), self._url)
         return self._endpoints
 
